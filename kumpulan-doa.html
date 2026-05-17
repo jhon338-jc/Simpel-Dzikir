@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kumpulan Doa - Simpel Dzikir</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<script>
+    // CEK LOGIN UNTUK SEMUA HALAMAN
+    (function() {
+        const userName = localStorage.getItem('userName');
+        if (!userName) {
+            window.location.href = 'login.html';
+        }
+    })();
+</script>
+
+    <div class="app-container">
+        <header class="header">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+            <h1 class="logo-small">Kumpulan Doa</h1>
+            <div></div>
+        </header>
+
+        <main class="content-page">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Cari doa..." id="searchDoa">
+            </div>
+
+            <div class="doa-list">
+                <div class="doa-card">
+                    <h3><i class="fas fa-bed"></i> Doa Sebelum Tidur</h3>
+                    <div class="doa-content">
+                        <p class="arab-text">بِاسْمِكَ اللَّهُمَّ أَحْيَا وَبِاسْمِكَ أَمُوتُ</p>
+                        <p class="latin-text">Bismikallahumma ahya wa bismika amut</p>
+                        <p class="meaning">Dengan nama-Mu ya Allah aku hidup dan dengan nama-Mu aku mati</p>
+                        <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                    </div>
+                </div>
+
+                <div class="doa-card">
+                    <h3><i class="fas fa-sun"></i> Doa Bangun Tidur</h3>
+                    <div class="doa-content">
+                        <p class="arab-text">الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</p>
+                        <p class="latin-text">Alhamdulillahilladzi ahyana ba'da ma amatana wa ilaihin nusyur</p>
+                        <p class="meaning">Segala puji bagi Allah yang telah menghidupkan kami setelah mematikan kami dan hanya kepada-Nya kami dikembalikan</p>
+                        <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                    </div>
+                </div>
+
+                <div class="doa-card">
+                    <h3><i class="fas fa-utensils"></i> Doa Sebelum Makan</h3>
+                    <div class="doa-content">
+                        <p class="arab-text">اَللَّهُمَّ بَارِكْ لَنَا فِيْمَا رَزَقْتَنَا وَقِنَا عَذَابَ النَّارِ</p>
+                        <p class="latin-text">Allahumma barik lana fi ma razaqtana wa qina 'adzaban nar</p>
+                        <p class="meaning">Ya Allah, berkahilah rezeki yang Engkau berikan kepada kami dan jauhkan kami dari siksa neraka</p>
+                        <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                    </div>
+                </div>
+
+                <div class="doa-card">
+                    <h3><i class="fas fa-hand-peace"></i> Doa Sesudah Makan</h3>
+                    <div class="doa-content">
+                        <p class="arab-text">الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِينَ</p>
+                        <p class="latin-text">Alhamdulillahilladzi ath'amana wa saqona wa ja'alana muslimin</p>
+                        <p class="meaning">Segala puji bagi Allah yang telah memberi makan dan minum kepada kami serta menjadikan kami orang-orang muslim</p>
+                        <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                    </div>
+                </div>
+
+                <div class="doa-card">
+                    <h3><i class="fas fa-car"></i> Doa Naik Kendaraan</h3>
+                    <div class="doa-content">
+                        <p class="arab-text">سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ</p>
+                        <p class="latin-text">Subhanalladzi sakh-khara lana hadza wa ma kunna lahu muqrinin wa inna ila rabbina lamunqalibun</p>
+                        <p class="meaning">Maha Suci Allah yang telah menundukkan kendaraan ini untuk kami, padahal kami sebelumnya tidak mampu menguasainya, dan sesungguhnya kami akan kembali kepada Tuhan kami</p>
+                        <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                    </div>
+                </div>
+
+                <div class="doa-card">
+                    <h3><i class="fas fa-home"></i> Doa Masuk Rumah</h3>
+                    <div class="doa-content">
+                        <p class="arab-text">اَللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ الْمَوْلِجِ وَخَيْرَ الْمَخْرَجِ بِسْمِ اللَّهِ وَلَجْنَا وَبِسْمِ اللَّهِ خَرَجْنَا وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا</p>
+                        <p class="latin-text">Allahumma inni as-aluka khairal mauliji wa khairal makhraji bismillahi walajna wa bismillahi khorojna wa 'alallahi robbana tawakkalna</p>
+                        <p class="meaning">Ya Allah, aku memohon kepada-Mu sebaik-baik tempat masuk dan sebaik-baik tempat keluar. Dengan nama Allah kami masuk, dan dengan nama Allah kami keluar, dan kepada Allah Tuhan kami kami bertawakal</p>
+                        <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                    </div>
+                </div>
+
+                <div class="doa-card">
+                    <h3><i class="fas fa-mosque"></i> Doa Masuk Masjid</h3>
+                    <div class="doa-content">
+                        <p class="arab-text">اَللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ</p>
+                        <p class="latin-text">Allahummaftah li abwaba rohmatik</p>
+                        <p class="meaning">Ya Allah, bukakanlah pintu rahmat-Mu untukku</p>
+                        <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                    </div>
+                </div>
+
+                <div class="doa-card">
+                    <h3><i class="fas fa-hand-sparkles"></i> Doa Keluar Masjid</h3>
+                    <div class="doa-content">
+                        <p class="arab-text">اَللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ</p>
+                        <p class="latin-text">Allahumma inni as-aluka min fadlik</p>
+                        <p class="meaning">Ya Allah, aku memohon kepada-Mu karunia-Mu</p>
+                        <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                    </div>
+                </div>
+
+                <div class="doa-card">
+                    <h3><i class="fas fa-bath"></i> Doa Sebelum Wudhu</h3>
+                    <div class="doa-content">
+                        <p class="arab-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+                        <p class="latin-text">Bismillahirrahmanirrahim</p>
+                        <p class="meaning">Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang</p>
+                        <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                    </div>
+                </div>
+
+                <div class="doa-card">
+                    <h3><i class="fas fa-water"></i> Doa Sesudah Wudhu</h3>
+                    <div class="doa-content">
+                        <p class="arab-text">أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</p>
+                        <p class="latin-text">Asyhadu alla ilaha illallahu wahdahu la syarika lahu wa asyhadu anna muhammadan 'abduhu wa rasuluh</p>
+                        <p class="meaning">Aku bersaksi bahwa tiada Tuhan selain Allah semata tiada sekutu bagi-Nya, dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya</p>
+                        <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Beranda</span></a>
+            <a href="jadwal-sholat.html" class="nav-item"><i class="fas fa-calendar-alt"></i><span>Jadwal</span></a>
+            <a href="kiblat.html" class="nav-item"><i class="fas fa-compass"></i><span>Kiblat</span></a>
+            <a href="tasbih.html" class="nav-item"><i class="fas fa-rosary"></i><span>Tasbih</span></a>
+            <a href="pengaturan.html" class="nav-item"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
+        </nav>
+    </div>
+    
+    <script src="js/locationManager.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

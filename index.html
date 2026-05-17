@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Simpel Dzikir - Zikir & Doa Harian</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #2e7d64 0%, #1a5d4a 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loading-screen.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loading-logo {
+            text-align: center;
+            animation: fadeInUp 0.6s ease;
+        }
+        
+        .loading-logo i {
+            font-size: 5rem;
+            color: white;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .loading-logo h1 {
+            color: white;
+            font-size: 2rem;
+            letter-spacing: 2px;
+        }
+        
+        .loading-logo p {
+            color: rgba(255,255,255,0.7);
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .loading-bar-container {
+            width: 200px;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+        
+        .loading-bar {
+            width: 0%;
+            height: 100%;
+            background: white;
+            border-radius: 4px;
+            transition: width 0.1s linear;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .app-container {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .app-container.visible {
+            opacity: 1;
+        }
+        
+        .user-greeting {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 30px;
+        }
+        
+        .user-greeting i {
+            font-size: 0.9rem;
+        }
+        
+        .user-greeting span {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .logout-btn {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.7);
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 0.7rem;
+        }
+        
+        .logout-btn:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    // CEK LOGIN UNTUK SEMUA HALAMAN
+    (function() {
+        const userName = localStorage.getItem('userName');
+        if (!userName) {
+            window.location.href = 'login.html';
+        }
+    })();
+</script>
+
+<div class="loading-screen" id="loadingScreen">
+    <div class="loading-logo">
+        <i class="fas fa-mosque"></i>
+        <h1>SIMPEL DZIKIR</h1>
+        <p>Digital Islamic Companion</p>
+    </div>
+    <div class="loading-bar-container">
+        <div class="loading-bar" id="loadingBar"></div>
+    </div>
+</div>
+
+<div class="app-container" id="appContainer">
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">
+                <i class="fas fa-mosque"></i>
+                <span>Simpel Dzikir</span>
+            </h1>
+            <div class="user-greeting" id="userGreeting">
+                <i class="fas fa-user-circle"></i>
+                <span id="userNameDisplay"></span>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-menu">
+        <div class="hero-section">
+            <div class="hero-greeting">
+                <h2 id="welcomeText">Assalamu'alaikum, <span id="userNameWelcome"></span></h2>
+                <p>Semoga hari mu penuh berkah</p>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <i class="fas fa-mosque"></i>
+                    <div>
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Waktu Sholat</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-book-quran"></i>
+                    <div>
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Kumpulan Doa</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-music"></i>
+                    <div>
+                        <span class="stat-number">20+</span>
+                        <span class="stat-label">Sholawat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Next Prayer Info dengan REAL TIME CLOCK -->
+        <div class="next-prayer-card">
+            <div class="next-prayer-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="next-prayer-info">
+                <span>Waktu Sholat Selanjutnya</span>
+                <strong id="nextPrayerName">--</strong>
+            </div>
+            <div class="next-prayer-time">
+                <span id="nextPrayerTime">--:--</span>
+                <span id="countdownTimer" class="countdown-small">--:--:--</span>
+            </div>
+        </div>
+
+        <!-- Menu Grid -->
+        <div class="menu-grid">
+            <a href="panduan-sholat.html" class="menu-card">
+                <div class="menu-icon"><i class="fas fa-praying-hands"></i></div>
+                <h3>Panduan Sholat</h3>
+                <p>Sholat wajib & sunnah lengkap</p>
+                <span class="menu-badge">Lengkap</span>
+            </a>
+
+            <a href="kumpulan-doa.html" class="menu-card">
+                <div class="menu-icon"><i class="fas fa-book-quran"></i></div>
+                <h3>Kumpulan Doa</h3>
+                <p>Doa harian lengkap</p>
+                <span class="menu-badge">50+ Doa</span>
+            </a>
+
+            <a href="kumpulan-sholawat.html" class="menu-card">
+                <div class="menu-icon"><i class="fas fa-music"></i></div>
+                <h3>Sholawat</h3>
+                <p>Kumpulan sholawat Nabi</p>
+                <span class="menu-badge">Populer</span>
+            </a>
+
+            <a href="jadwal-sholat.html" class="menu-card">
+                <div class="menu-icon"><i class="fas fa-calendar-alt"></i></div>
+                <h3>Jadwal Sholat</h3>
+                <p>5 waktu + Duha & Tahajud</p>
+                <span class="menu-badge">Real-time</span>
+            </a>
+
+            <a href="kiblat.html" class="menu-card">
+                <div class="menu-icon"><i class="fas fa-compass"></i></div>
+                <h3>Arah Kiblat</h3>
+                <p>Penunjuk arah kiblat</p>
+                <span class="menu-badge">Akurat</span>
+            </a>
+
+            <a href="tasbih.html" class="menu-card">
+                <div class="menu-icon"><i class="fas fa-star-of-life"></i></div>
+                <h3>Tasbih Digital</h3>
+                <p>Penghitung dzikir 33x</p>
+                <span class="menu-badge">Interaktif</span>
+            </a>
+        </div>
+
+        <div class="quote-card">
+            <i class="fas fa-quote-right"></i>
+            <p>"Sebaik-baik manusia adalah yang paling bermanfaat bagi orang lain"</p>
+            <span>- HR. Thabrani</span>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </a>
+        <a href="jadwal-sholat.html" class="nav-item">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Jadwal</span>
+        </a>
+        <a href="kiblat.html" class="nav-item">
+            <i class="fas fa-compass"></i>
+            <span>Kiblat</span>
+        </a>
+        <a href="tasbih.html" class="nav-item">
+            <i class="fas fa-star-of-life"></i>
+            <span>Tasbih</span>
+        </a>
+        <a href="pengaturan.html" class="nav-item">
+            <i class="fas fa-cog"></i>
+            <span>Pengaturan</span>
+        </a>
+    </nav>
+</div>
+
+<script src="js/locationManager.js"></script>
+<script src="js/translations.js"></script>
+<script src="js/app.js"></script>
+<script>
+    // Tampilkan username
+    const userName = localStorage.getItem('userName');
+    if (userName) {
+        const userNameDisplay = document.getElementById('userNameDisplay');
+        const userNameWelcome = document.getElementById('userNameWelcome');
+        if (userNameDisplay) userNameDisplay.textContent = userName;
+        if (userNameWelcome) userNameWelcome.textContent = userName;
+    }
+    
+    // Tombol logout
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('userName');
+            window.location.href = 'login.html';
+        });
+    }
+    
+    // REAL TIME NEXT PRAYER COUNTDOWN
+    function updateNextPrayerRealTime() {
+        const now = new Date();
+        const currentHour = now.getHours();
+        const currentMinute = now.getMinutes();
+        const currentSecond = now.getSeconds();
+        
+        // Jadwal sholat (waktu Indonesia)
+        const prayerSchedule = [
+            { name: 'Subuh', hour: 4, minute: 40 },
+            { name: 'Dzuhur', hour: 12, minute: 0 },
+            { name: 'Ashar', hour: 15, minute: 15 },
+            { name: 'Maghrib', hour: 18, minute: 0 },
+            { name: 'Isya', hour: 19, minute: 15 }
+        ];
+        
+        const currentTotal = currentHour * 3600 + currentMinute * 60 + currentSecond;
+        
+        let nextPrayer = null;
+        let nextPrayerTotal = null;
+        
+        for (let prayer of prayerSchedule) {
+            const prayerTotal = prayer.hour * 3600 + prayer.minute * 60;
+            if (prayerTotal > currentTotal) {
+                nextPrayer = prayer;
+                nextPrayerTotal = prayerTotal;
+                break;
+            }
+        }
+        
+        if (!nextPrayer) {
+            nextPrayer = prayerSchedule[0];
+            nextPrayerTotal = prayerSchedule[0].hour * 3600 + prayerSchedule[0].minute * 60 + 24 * 3600;
+        }
+        
+        // Hitung selisih
+        let diff = nextPrayerTotal - currentTotal;
+        if (diff < 0) diff += 24 * 3600;
+        
+        const hours = Math.floor(diff / 3600);
+        const minutes = Math.floor((diff % 3600) / 60);
+        const seconds = diff % 60;
+        
+        // Update tampilan
+        const nextPrayerNameEl = document.getElementById('nextPrayerName');
+        const nextPrayerTimeEl = document.getElementById('nextPrayerTime');
+        const countdownTimerEl = document.getElementById('countdownTimer');
+        
+        if (nextPrayerNameEl) nextPrayerNameEl.textContent = nextPrayer.name;
+        if (nextPrayerTimeEl) nextPrayerTimeEl.textContent = `${String(nextPrayer.hour).padStart(2, '0')}:${String(nextPrayer.minute).padStart(2, '0')}`;
+        if (countdownTimerEl) countdownTimerEl.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+    
+    // Jalankan setiap detik
+    updateNextPrayerRealTime();
+    setInterval(updateNextPrayerRealTime, 1000);
+    
+    // Loading Screen (hanya sekali per session)
+    (function() {
+        const hasLoaded = sessionStorage.getItem('hasLoaded');
+        const loadingScreen = document.getElementById('loadingScreen');
+        const appContainer = document.getElementById('appContainer');
+        const loadingBar = document.getElementById('loadingBar');
+        
+        if (hasLoaded) {
+            if (loadingScreen) loadingScreen.style.display = 'none';
+            if (appContainer) appContainer.classList.add('visible');
+            return;
+        }
+        
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 3;
+            if (loadingBar) loadingBar.style.width = progress + '%';
+            if (progress >= 100) {
+                clearInterval(interval);
+                setTimeout(() => {
+                    if (loadingScreen) loadingScreen.classList.add('hide');
+                    if (appContainer) appContainer.classList.add('visible');
+                    setTimeout(() => {
+                        if (loadingScreen) loadingScreen.style.display = 'none';
+                    }, 500);
+                    sessionStorage.setItem('hasLoaded', 'true');
+                }, 500);
+            }
+        }, 60);
+    })();
+</script>
+</body>
+</html>

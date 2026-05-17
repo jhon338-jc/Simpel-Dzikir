@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title data-i18n-title="nav.jadwal">Jadwal Sholat - Simpel Dzikir</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <script>
+    // CEK LOGIN UNTUK SEMUA HALAMAN
+    (function() {
+        const userName = localStorage.getItem('userName');
+        if (!userName) {
+            window.location.href = 'login.html';
+        }
+    })();
+</script>
+
+    <div class="app-container">
+        <header class="header">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+            <h1 class="logo-small" data-i18n="nav.jadwal">Jadwal Sholat</h1>
+            <div></div>
+        </header>
+
+        <main class="content-page">
+            <!-- REAL TIME CLOCK - WIB -->
+            <div class="real-time-clock">
+                <div class="clock-time" id="clockTime">--:--:--</div>
+                <div class="clock-date" id="clockDate">--, -- -- ----</div>
+                <div class="clock-timezone" id="clockTimezone">WIB</div>
+            </div>
+
+        <!-- Location Section dengan Toggle GPS -->
+        <div class="location-section">
+            <div class="gps-toggle-box">
+                <div class="gps-toggle-info">
+                    <i class="fas fa-satellite-dish"></i>
+                    <span>Status GPS</span>
+                </div>
+                <label class="gps-switch">
+                    <input type="checkbox" id="gpsToggle">
+                    <span class="gps-slider"></span>
+                </label>
+                <span id="gpsStatusText" class="gps-status">GPS: OFF</span>
+            </div>
+            
+            <div class="location-box">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="location-info">
+                    <span id="cityName" data-i18n="location.default">Jakarta</span>
+                    <span id="provinceName"></span>
+                </div>
+                <button id="getLocationBtn" class="location-btn">
+                    <i class="fas fa-location-dot"></i> 
+                    <span data-i18n="btn.location">Aktifkan Lokasi Saya</span>
+                </button>
+            </div>
+            <div class="manual-location">
+                <select id="citySelect">
+                    <option value="jakarta">Jakarta (WIB)</option>
+                    <option value="surabaya">Surabaya (WIB)</option>
+                    <option value="bandung">Bandung (WIB)</option>
+                                    <option value="medan">Medan (WIB)</option>
+                                    <option value="makassar">Makassar (WITA)</option>
+                                    <option value="semarang">Semarang (WIB)</option>
+                                    <option value="yogyakarta">Yogyakarta (WIB)</option>
+                                    <option value="palembang">Palembang (WIB)</option>
+                                    <option value="bali">Denpasar (WITA)</option>
+                                    <option value="aceh">Banda Aceh (WIB)</option>
+                                </select>
+                                <button id="applyCityBtn" class="apply-city-btn">
+                                    <i class="fas fa-check"></i> <span data-i18n="btn.apply">Terapkan</span>
+                                </button>
+                            </div>
+                        </div>
+
+            <!-- Prayer Times List -->
+            <div class="prayer-times">
+                <div class="prayer-time-card" data-prayer="imsak">
+                    <div class="prayer-name">
+                        <i class="fas fa-cloud-sun"></i>
+                        <span data-i18n="prayer.imsak">Imsak</span>
+                    </div>
+                    <div class="prayer-clock" id="imsak">--:--</div>
+                    <div class="prayer-notif">
+                        <label class="notif-switch">
+                            <input type="checkbox" class="prayer-alarm" data-prayer="imsak">
+                            <span class="notif-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="prayer-time-card fajr" data-prayer="subuh">
+                    <div class="prayer-name">
+                        <i class="fas fa-sun"></i>
+                        <span data-i18n="prayer.subuh">Subuh</span>
+                    </div>
+                    <div class="prayer-clock" id="subuh">--:--</div>
+                    <div class="prayer-notif">
+                        <label class="notif-switch">
+                            <input type="checkbox" class="prayer-alarm" data-prayer="subuh">
+                            <span class="notif-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="prayer-time-card dhuha" data-prayer="dhuha">
+                    <div class="prayer-name">
+                        <i class="fas fa-cloud-sun"></i>
+                        <span data-i18n="prayer.dhuha">Dhuha</span>
+                    </div>
+                    <div class="prayer-clock" id="dhuha">--:--</div>
+                    <div class="prayer-notif">
+                        <label class="notif-switch">
+                            <input type="checkbox" class="prayer-alarm" data-prayer="dhuha">
+                            <span class="notif-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="prayer-time-card" data-prayer="dzuhur">
+                    <div class="prayer-name">
+                        <i class="fas fa-sun"></i>
+                        <span data-i18n="prayer.dzuhur">Dzuhur</span>
+                    </div>
+                    <div class="prayer-clock" id="dzuhur">--:--</div>
+                    <div class="prayer-notif">
+                        <label class="notif-switch">
+                            <input type="checkbox" class="prayer-alarm" data-prayer="dzuhur">
+                            <span class="notif-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="prayer-time-card" data-prayer="ashar">
+                    <div class="prayer-name">
+                        <i class="fas fa-sun"></i>
+                        <span data-i18n="prayer.ashar">Ashar</span>
+                    </div>
+                    <div class="prayer-clock" id="ashar">--:--</div>
+                    <div class="prayer-notif">
+                        <label class="notif-switch">
+                            <input type="checkbox" class="prayer-alarm" data-prayer="ashar">
+                            <span class="notif-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="prayer-time-card" data-prayer="maghrib">
+                    <div class="prayer-name">
+                        <i class="fas fa-moon"></i>
+                        <span data-i18n="prayer.maghrib">Maghrib</span>
+                    </div>
+                    <div class="prayer-clock" id="maghrib">--:--</div>
+                    <div class="prayer-notif">
+                        <label class="notif-switch">
+                            <input type="checkbox" class="prayer-alarm" data-prayer="maghrib">
+                            <span class="notif-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="prayer-time-card" data-prayer="isya">
+                    <div class="prayer-name">
+                        <i class="fas fa-star"></i>
+                        <span data-i18n="prayer.isya">Isya</span>
+                    </div>
+                    <div class="prayer-clock" id="isya">--:--</div>
+                    <div class="prayer-notif">
+                        <label class="notif-switch">
+                            <input type="checkbox" class="prayer-alarm" data-prayer="isya">
+                            <span class="notif-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="prayer-time-card tahajud" data-prayer="tahajud">
+                    <div class="prayer-name">
+                        <i class="fas fa-moon"></i>
+                        <span data-i18n="prayer.tahajud">Tahajud</span>
+                    </div>
+                    <div class="prayer-clock" id="tahajud">--:--</div>
+                    <div class="prayer-notif">
+                        <label class="notif-switch">
+                            <input type="checkbox" class="prayer-alarm" data-prayer="tahajud">
+                            <span class="notif-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Prayer Countdown -->
+            <div class="next-prayer">
+                <h4 data-i18n="next.prayer">Waktu Sholat Selanjutnya</h4>
+                <div class="next-prayer-info">
+                    <i class="fas fa-clock"></i>
+                    <span id="nextPrayerName">--</span>
+                    <span id="nextPrayerTime">--:--</span>
+                </div>
+                <div class="countdown" id="countdown">--:--:--</div>
+            </div>
+
+            <!-- Active Alarms List -->
+            <div class="active-alarms">
+                <h4><i class="fas fa-bell"></i> <span data-i18n="alarm.active">Alarm Aktif</span></h4>
+                <div id="activeAlarmsList" class="alarms-list">
+                    <p class="no-alarms"><i class="fas fa-bell-slash"></i> Belum ada alarm yang diaktifkan</p>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span data-i18n="nav.home">Beranda</span></a>
+            <a href="jadwal-sholat.html" class="nav-item active"><i class="fas fa-calendar-alt"></i><span data-i18n="nav.jadwal">Jadwal</span></a>
+            <a href="kiblat.html" class="nav-item"><i class="fas fa-compass"></i><span data-i18n="nav.kiblat">Kiblat</span></a>
+            <a href="tasbih.html" class="nav-item"><i class="fas fa-subway"></i><span data-i18n="nav.tasbih">Tasbih</span></a>
+            <a href="pengaturan.html" class="nav-item"><i class="fas fa-cog"></i><span data-i18n="nav.pengaturan">Pengaturan</span></a>
+        </nav>
+    </div>
+
+    <!-- Di bagian bawah, SEBELUM script lainnya -->
+    <script src="js/locationManager.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/jadwal.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengaturan - Simpel Dzikir</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<script>
+    // CEK LOGIN UNTUK SEMUA HALAMAN
+    (function() {
+        const userName = localStorage.getItem('userName');
+        if (!userName) {
+            window.location.href = 'login.html';
+        }
+    })();
+</script>
+
+    <div class="app-container">
+        <header class="header">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+            <h1 class="logo-small" data-i18n="nav.pengaturan">Pengaturan</h1>
+            <div></div>
+        </header>
+
+        <main class="content-page">
+            <!-- Notifikasi -->
+            <div class="settings-section">
+                <h3><i class="fas fa-bell"></i> <span data-i18n="settings.notifikasi">Notifikasi</span></h3>
+                <div class="setting-item">
+                    <label><i class="fas fa-mosque"></i> <span data-i18n="settings.notifikasi.adzan">Notifikasi Adzan</span></label>
+                    <label class="switch">
+                        <input type="checkbox" id="adzanNotif">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label><i class="fas fa-praying-hands"></i> <span data-i18n="settings.notifikasi.dzikir">Notifikasi Dzikir Harian</span></label>
+                    <label class="switch">
+                        <input type="checkbox" id="dzikirNotif">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Suara (Pengganti Volume) -->
+            <div class="settings-section">
+                <h3><i class="fas fa-volume-up"></i> <span data-i18n="settings.suara">Suara</span></h3>
+                <div class="setting-item">
+                    <label><i class="fas fa-bell"></i> <span data-i18n="settings.suara.alarm">Suara Alarm Sholat</span></label>
+                    <label class="switch">
+                        <input type="checkbox" id="soundToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label><i class="fas fa-hand-sparkles"></i> <span data-i18n="settings.suara.dzikir">Suara Dzikir Selesai</span></label>
+                    <label class="switch">
+                        <input type="checkbox" id="dzikirSoundToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label><i class="fas fa-quran"></i> <span data-i18n="settings.suara.bacaan">Suara Bacaan Doa</span></label>
+                    <label class="switch">
+                        <input type="checkbox" id="doaSoundToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Tampilan -->
+            <div class="settings-section">
+                <h3><i class="fas fa-palette"></i> <span data-i18n="settings.tampilan">Tampilan</span></h3>
+                <div class="setting-item">
+                    <label><i class="fas fa-text-height"></i> <span data-i18n="settings.tampilan.font">Ukuran Teks</span></label>
+                    <div class="select-wrapper">
+                        <select id="fontSize">
+                            <option value="small" data-i18n-option="font.small">Kecil</option>
+                            <option value="medium" selected data-i18n-option="font.medium">Sedang</option>
+                            <option value="large" data-i18n-option="font.large">Besar</option>
+                            <option value="xlarge" data-i18n-option="font.xlarge">Sangat Besar</option>
+                        </select>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bahasa -->
+            <div class="settings-section">
+                <h3><i class="fas fa-language"></i> <span data-i18n="settings.bahasa">Bahasa</span></h3>
+                <div class="setting-item">
+                    <label><i class="fas fa-globe"></i> <span data-i18n="settings.bahasa.select">Bahasa Aplikasi</span></label>
+                    <div class="select-wrapper">
+                        <select id="language">
+                            <option value="id">Indonesia</option>
+                            <option value="en">English</option>
+                            <option value="ar">العربية</option>
+                        </select>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Informasi -->
+            <div class="settings-section">
+                <h3><i class="fas fa-info-circle"></i> <span data-i18n="settings.informasi">Informasi</span></h3>
+                <div class="setting-item">
+                    <label><i class="fas fa-code-branch"></i> <span data-i18n="settings.informasi.version">Versi Aplikasi</span></label>
+                    <span>1.0.0</span>
+                </div>
+                <div class="setting-item">
+                    <label><i class="fas fa-user-cog"></i> <span data-i18n="settings.informasi.developer">Developer</span></label>
+                    <span class="developer-name">JHON338</span>
+                </div>
+                <div class="setting-item">
+                    <label><i class="fas fa-globe-asia"></i> <span data-i18n="settings.informasi.website">Website</span></label>
+                    <span>Simpel Dzikir v1.0</span>
+                </div>
+                <button id="resetSettings" class="reset-settings-btn">
+                    <i class="fas fa-undo-alt"></i> <span data-i18n="settings.reset">Reset Semua Pengaturan</span>
+                </button>
+            </div>
+
+            <!-- Preview -->
+            <div class="settings-section preview-section">
+                <h3><i class="fas fa-eye"></i> <span data-i18n="settings.preview">Preview Perubahan</span></h3>
+                <div class="preview-text">
+                    <p class="arab-preview">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+                    <p class="latin-preview">Bismillahirrahmanirrahim</p>
+                    <p class="meaning-preview" data-i18n="preview.bismillah">Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang</p>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span data-i18n="nav.home">Beranda</span></a>
+            <a href="jadwal-sholat.html" class="nav-item"><i class="fas fa-calendar-alt"></i><span data-i18n="nav.jadwal">Jadwal</span></a>
+            <a href="kiblat.html" class="nav-item"><i class="fas fa-compass"></i><span data-i18n="nav.kiblat">Kiblat</span></a>
+            <a href="tasbih.html" class="nav-item"><i class="fas fa-subway"></i><span data-i18n="nav.tasbih">Tasbih</span></a>
+            <a href="pengaturan.html" class="nav-item active"><i class="fas fa-cog"></i><span data-i18n="nav.pengaturan">Pengaturan</span></a>
+        </nav>
+    </div>
+
+    <script src="js/locationManager.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

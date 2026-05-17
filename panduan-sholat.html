@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Sholat - Simpel Dzikir</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<script>
+    // TAB SWITCHING MANUAL
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Hapus class active dari semua tab button
+                tabBtns.forEach(b => b.classList.remove('active'));
+                // Tambah class active ke button yang diklik
+                this.classList.add('active');
+                
+                // Sembunyikan semua konten tab
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Tampilkan konten tab yang sesuai
+                const tabId = this.getAttribute('data-tab');
+                const activeContent = document.getElementById(tabId);
+                if (activeContent) {
+                    activeContent.classList.add('active');
+                }
+            });
+        });
+    });
+</script>
+<script>
+    // CEK LOGIN UNTUK SEMUA HALAMAN
+    (function() {
+        const userName = localStorage.getItem('userName');
+        if (!userName) {
+            window.location.href = 'login.html';
+        }
+    })();
+</script>
+
+<div class="app-container">
+    <header class="header">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="logo-small">Panduan Sholat</h1>
+        <div></div>
+    </header>
+
+    <main class="content-page">
+        <!-- BASMALAH DI AWAL -->
+        <div class="basmalah-section">
+            <div class="basmalah-card">
+                <p class="basmalah-arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+                <p class="basmalah-latin">Bismillahirrahmanirrahim</p>
+                <p class="basmalah-arti">Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang</p>
+            </div>
+        </div>
+
+        <!-- TAB NAVIGATION -->
+        <div class="section-tabs">
+            <button class="tab-btn active" data-tab="wajib">Sholat Wajib</button>
+            <button class="tab-btn" data-tab="sunnah">Sholat Sunnah</button>
+            <button class="tab-btn" data-tab="wudhu">Niat Wudhu</button>
+            <button class="tab-btn" data-tab="dzikir">Dzikir & Doa</button>
+        </div>
+
+        <!-- TAB SHOLAT WAJIB -->
+        <div id="wajib" class="tab-content active">
+            <!-- Niat Sholat Subuh -->
+            <div class="prayer-card" data-prayer="subuh">
+                <h3><i class="fas fa-sun"></i> Niat Sholat Subuh</h3>
+                <div class="prayer-detail">
+                    <p class="arab-text">أُصَلِّي فَرْضَ الصُّبْحِ رَكْعَتَيْنِ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلَّهِ تَعَالَى</p>
+                    <p class="latin-text">Ushalli fardhash shubhi rak'ataini mustaqbilal qiblati ada-an lillahi ta'ala</p>
+                    <p class="meaning">Aku berniat shalat fardhu Subuh dua rakaat menghadap kiblat karena Allah Ta'ala</p>
+                    <button class="audio-btn" data-audio="subuh-niat"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+            </div>
+
+            <!-- Niat Sholat Dzuhur -->
+            <div class="prayer-card" data-prayer="dzuhur">
+                <h3><i class="fas fa-sun"></i> Niat Sholat Dzuhur</h3>
+                <div class="prayer-detail">
+                    <p class="arab-text">أُصَلِّي فَرْضَ الظُّهْرِ أَرْبَعَ رَكَعَاتٍ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلَّهِ تَعَالَى</p>
+                    <p class="latin-text">Ushalli fardhadz dzuhri arba'a raka'atin mustaqbilal qiblati ada-an lillahi ta'ala</p>
+                    <p class="meaning">Aku berniat shalat fardhu Dzuhur empat rakaat menghadap kiblat karena Allah Ta'ala</p>
+                    <button class="audio-btn" data-audio="dzuhur-niat"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+            </div>
+
+            <!-- Niat Sholat Ashar -->
+            <div class="prayer-card" data-prayer="ashar">
+                <h3><i class="fas fa-sun"></i> Niat Sholat Ashar</h3>
+                <div class="prayer-detail">
+                    <p class="arab-text">أُصَلِّي فَرْضَ الْعَصْرِ أَرْبَعَ رَكَعَاتٍ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلَّهِ تَعَالَى</p>
+                    <p class="latin-text">Ushalli fardhal 'ashri arba'a raka'atin mustaqbilal qiblati ada-an lillahi ta'ala</p>
+                    <p class="meaning">Aku berniat shalat fardhu Ashar empat rakaat menghadap kiblat karena Allah Ta'ala</p>
+                    <button class="audio-btn" data-audio="ashar-niat"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+            </div>
+
+            <!-- Niat Sholat Maghrib -->
+            <div class="prayer-card" data-prayer="maghrib">
+                <h3><i class="fas fa-moon"></i> Niat Sholat Maghrib</h3>
+                <div class="prayer-detail">
+                    <p class="arab-text">أُصَلِّي فَرْضَ الْمَغْرِبِ ثَلَاثَ رَكَعَاتٍ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلَّهِ تَعَالَى</p>
+                    <p class="latin-text">Ushalli fardhal maghribi tsalatsa raka'atin mustaqbilal qiblati ada-an lillahi ta'ala</p>
+                    <p class="meaning">Aku berniat shalat fardhu Maghrib tiga rakaat menghadap kiblat karena Allah Ta'ala</p>
+                    <button class="audio-btn" data-audio="maghrib-niat"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+            </div>
+
+            <!-- Niat Sholat Isya -->
+            <div class="prayer-card" data-prayer="isya">
+                <h3><i class="fas fa-star"></i> Niat Sholat Isya</h3>
+                <div class="prayer-detail">
+                    <p class="arab-text">أُصَلِّي فَرْضَ الْعِشَاءِ أَرْبَعَ رَكَعَاتٍ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلَّهِ تَعَالَى</p>
+                    <p class="latin-text">Ushalli fardhal 'isya'i arba'a raka'atin mustaqbilal qiblati ada-an lillahi ta'ala</p>
+                    <p class="meaning">Aku berniat shalat fardhu Isya empat rakaat menghadap kiblat karena Allah Ta'ala</p>
+                    <button class="audio-btn" data-audio="isya-niat"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB SHOLAT SUNNAH -->
+        <div id="sunnah" class="tab-content">
+            <div class="prayer-card">
+                <h3><i class="fas fa-cloud-sun"></i> Niat Sholat Dhuha</h3>
+                <div class="prayer-detail">
+                    <p class="arab-text">أُصَلِّي سُنَّةَ الضُّحَى رَكْعَتَيْنِ مُسْتَقْبِلَ الْقِبْلَةِ لِلَّهِ تَعَالَى</p>
+                    <p class="latin-text">Ushalli sunnatadh dhuha rak'ataini mustaqbilal qiblati lillahi ta'ala</p>
+                    <p class="meaning">Aku berniat shalat sunnah Dhuha dua rakaat menghadap kiblat karena Allah Ta'ala</p>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+            </div>
+
+            <div class="prayer-card">
+                <h3><i class="fas fa-moon"></i> Niat Sholat Tahajud</h3>
+                <div class="prayer-detail">
+                    <p class="arab-text">أُصَلِّي سُنَّةَ التَّهَجُّدِ رَكْعَتَيْنِ مُسْتَقْبِلَ الْقِبْلَةِ لِلَّهِ تَعَالَى</p>
+                    <p class="latin-text">Ushalli sunnatat tahajjudi rak'ataini mustaqbilal qiblati lillahi ta'ala</p>
+                    <p class="meaning">Aku berniat shalat sunnah Tahajud dua rakaat menghadap kiblat karena Allah Ta'ala</p>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+            </div>
+
+            <div class="prayer-card">
+                <h3><i class="fas fa-pray"></i> Niat Sholat Witir</h3>
+                <div class="prayer-detail">
+                    <p class="arab-text">أُصَلِّي سُنَّةَ الْوِتْرِ ثَلَاثَ رَكَعَاتٍ مُسْتَقْبِلَ الْقِبْلَةِ لِلَّهِ تَعَالَى</p>
+                    <p class="latin-text">Ushalli sunnatal witri tsalatsa raka'atin mustaqbilal qiblati lillahi ta'ala</p>
+                    <p class="meaning">Aku berniat shalat sunnah Witir tiga rakaat menghadap kiblat karena Allah Ta'ala</p>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+            </div>
+
+            <div class="prayer-card">
+                <h3><i class="fas fa-mosque"></i> Niat Sholat Jumat</h3>
+                <div class="prayer-detail">
+                    <p class="arab-text">أُصَلِّي فَرْضَ الْجُمُعَةِ رَكْعَتَيْنِ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلَّهِ تَعَالَى</p>
+                    <p class="latin-text">Ushalli fardhal jumu'ati rak'ataini mustaqbilal qiblati ada-an lillahi ta'ala</p>
+                    <p class="meaning">Aku berniat shalat fardhu Jumat dua rakaat menghadap kiblat karena Allah Ta'ala</p>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB NIAT WUDHU -->
+        <div id="wudhu" class="tab-content">
+            <!-- Niat Sebelum Wudhu -->
+            <div class="prayer-card">
+                <h3><i class="fas fa-hand-sparkles"></i> Niat Sebelum Wudhu</h3>
+                <div class="prayer-detail">
+                    <p class="arab-text">نَوَيْتُ الْوُضُوءَ لِرَفْعِ الْحَدَثِ الْأَصْغَرِ فَرْضًا لِلَّهِ تَعَالَى</p>
+                    <p class="latin-text">Nawaitul wudhuu-a liraf'il hadatsil ashghari fardhan lillahi ta'ala</p>
+                    <p class="meaning">Aku berniat wudhu untuk menghilangkan hadas kecil, fardhu karena Allah Ta'ala</p>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+            </div>
+
+            <!-- Doa Setelah Wudhu -->
+            <div class="prayer-card">
+                <h3><i class="fas fa-water"></i> Doa Setelah Wudhu</h3>
+                <div class="prayer-detail">
+                    <p class="arab-text">أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</p>
+                    <p class="latin-text">Asyhadu alla ilaha illallahu wahdahu la syarika lahu wa asyhadu anna muhammadan abduhu wa rasuluh</p>
+                    <p class="meaning">Aku bersaksi bahwa tiada Tuhan selain Allah semata tiada sekutu bagi-Nya, dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya</p>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+            </div>
+
+            <!-- Doa Setelah Wudhu Lengkap -->
+            <div class="prayer-card">
+                <h3><i class="fas fa-pray"></i> Doa Wudhu (Lengkap)</h3>
+                <div class="prayer-detail">
+                    <p class="arab-text">اللَّهُمَّ اجْعَلْنِي مِنَ التَّوَّابِينَ وَاجْعَلْنِي مِنَ الْمُتَطَهِّرِينَ</p>
+                    <p class="latin-text">Allahummaj'alni minat tawwabina waj'alni minal mutathahhirin</p>
+                    <p class="meaning">Ya Allah, jadikanlah aku termasuk orang-orang yang bertaubat dan jadikanlah aku termasuk orang-orang yang bersuci</p>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB DZIKIR & DOA SETELAH SHOLAT -->
+        <div id="dzikir" class="tab-content">
+            <div class="dzikir-section">
+                <h3>Dzikir Setelah Sholat Wajib</h3>
+                
+                <div class="dzikir-item">
+                    <p class="arab-text">أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ</p>
+                    <p class="latin-text">Astaghfirullahal 'adzim</p>
+                    <p class="meaning">Aku memohon ampun kepada Allah Yang Maha Agung</p>
+                    <span class="count">3x</span>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar</button>
+                </div>
+
+                <div class="dzikir-item">
+                    <p class="arab-text">اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ</p>
+                    <p class="latin-text">Allahumma antas salam wa minkas salam tabarakta ya dzal jalali wal ikram</p>
+                    <p class="meaning">Ya Allah, Engkau adalah keselamatan, dan dari-Mu lah keselamatan, Maha Suci Engkau wahai Tuhan Yang Memiliki Keagungan dan Kemuliaan</p>
+                    <span class="count">1x</span>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar</button>
+                </div>
+
+                <div class="dzikir-item">
+                    <p class="arab-text">سُبْحَانَ اللَّهِ</p>
+                    <p class="latin-text">Subhanallah</p>
+                    <p class="meaning">Maha Suci Allah</p>
+                    <span class="count">33x</span>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar</button>
+                </div>
+
+                <div class="dzikir-item">
+                    <p class="arab-text">الْحَمْدُ لِلَّهِ</p>
+                    <p class="latin-text">Alhamdulillah</p>
+                    <p class="meaning">Segala puji bagi Allah</p>
+                    <span class="count">33x</span>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar</button>
+                </div>
+
+                <div class="dzikir-item">
+                    <p class="arab-text">اللَّهُ أَكْبَرُ</p>
+                    <p class="latin-text">Allahu Akbar</p>
+                    <p class="meaning">Allah Maha Besar</p>
+                    <span class="count">33x</span>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar</button>
+                </div>
+
+                <div class="dzikir-item">
+                    <p class="arab-text">لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ</p>
+                    <p class="latin-text">La ilaha illallahu wahdahu la syarika lahu, lahul mulku wa lahul hamdu wa huwa 'ala kulli syai-in qadir</p>
+                    <p class="meaning">Tidak ada Tuhan selain Allah semata, tidak ada sekutu bagi-Nya, milik-Nya segala kerajaan dan bagi-Nya segala puji, dan Dia Maha Kuasa atas segala sesuatu</p>
+                    <span class="count">1x</span>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Beranda</span></a>
+        <a href="jadwal-sholat.html" class="nav-item"><i class="fas fa-calendar-alt"></i><span>Jadwal</span></a>
+        <a href="kiblat.html" class="nav-item"><i class="fas fa-compass"></i><span>Kiblat</span></a>
+        <a href="tasbih.html" class="nav-item"><i class="fas fa-star-of-life"></i><span>Tasbih</span></a>
+        <a href="pengaturan.html" class="nav-item"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
+    </nav>
+</div>
+
+<script src="js/locationManager.js"></script>
+<script src="js/translations.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

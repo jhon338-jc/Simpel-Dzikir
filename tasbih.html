@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-title="nav.tasbih">Tasbih Digital - Simpel Dzikir</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<script>
+    // CEK LOGIN UNTUK SEMUA HALAMAN
+    (function() {
+        const userName = localStorage.getItem('userName');
+        if (!userName) {
+            window.location.href = 'login.html';
+        }
+    })();
+</script>
+
+    <div class="app-container">
+        <header class="header">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+            <h1 class="logo-small" data-i18n="nav.tasbih">Tasbih Digital</h1>
+            <div></div>
+        </header>
+
+        <main class="content-page">
+            <div class="tasbih-container">
+                <div class="current-dzikir">
+                    <h3 id="currentDzikirName" data-i18n="tasbih.subhanallah">Subhanallah</h3>
+                    <div class="arabic-dzikir" id="arabicDzikir">سُبْحَانَ اللَّهِ</div>
+                    <div class="latin-dzikir" id="latinDzikir">Subhanallah</div>
+                    <div class="meaning-dzikir" id="meaningDzikir" data-i18n="meaning.subhanallah">Maha Suci Allah</div>
+                </div>
+
+                <div class="counter-display">
+                    <div class="counter-number" id="counter">0</div>
+                    <div class="counter-target"><span data-i18n="tasbih.target">Target</span>: <span id="targetCount">33</span></div>
+                </div>
+
+                <div class="counter-buttons">
+                    <button id="resetBtn" class="counter-btn reset">
+                        <i class="fas fa-undo-alt"></i>
+                        <span data-i18n="tasbih.reset">Reset</span>
+                    </button>
+                    <button id="addBtn" class="counter-btn add">
+                        <i class="fas fa-plus-circle"></i>
+                        <span data-i18n="tasbih.hitung">Hitung</span>
+                    </button>
+                </div>
+
+                <div class="dzikir-steps">
+                    <div class="step" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-info">
+                            <p class="step-arabic">سُبْحَانَ اللَّهِ</p>
+                            <p><span data-i18n="tasbih.subhanallah">Subhanallah</span> (33x)</p>
+                        </div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-info">
+                            <p class="step-arabic">الْحَمْدُ لِلَّهِ</p>
+                            <p><span data-i18n="tasbih.alhamdulillah">Alhamdulillah</span> (33x)</p>
+                        </div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-info">
+                            <p class="step-arabic">اللَّهُ أَكْبَرُ</p>
+                            <p><span data-i18n="tasbih.allahuakbar">Allahu Akbar</span> (33x)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="completion-message" id="completionMsg"></div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span data-i18n="nav.home">Beranda</span></a>
+            <a href="jadwal-sholat.html" class="nav-item"><i class="fas fa-calendar-alt"></i><span data-i18n="nav.jadwal">Jadwal</span></a>
+            <a href="kiblat.html" class="nav-item"><i class="fas fa-compass"></i><span data-i18n="nav.kiblat">Kiblat</span></a>
+            <a href="tasbih.html" class="nav-item active"><i class="fas fa-subway"></i><span data-i18n="nav.tasbih">Tasbih</span></a>
+            <a href="pengaturan.html" class="nav-item"><i class="fas fa-cog"></i><span data-i18n="nav.pengaturan">Pengaturan</span></a>
+        </nav>
+    </div>
+    
+    <script src="js/locationManager.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/tasbih.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

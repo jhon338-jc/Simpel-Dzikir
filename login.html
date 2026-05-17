@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Masuk - Simpel Dzikir</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2e7d64 0%, #1a5d4a 100%);
+            padding: 20px;
+        }
+        
+        .login-card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        .login-icon {
+            background: #2e7d64;
+            width: 70px;
+            height: 70px;
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .login-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .login-card h1 {
+            color: #1a2a3a;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .login-card p {
+            color: #7a8a9a;
+            font-size: 0.8rem;
+            margin-bottom: 25px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .input-group label {
+            display: block;
+            font-size: 0.75rem;
+            color: #4a5a6a;
+            margin-bottom: 5px;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #2e7d64;
+            box-shadow: 0 0 0 3px rgba(46,125,100,0.1);
+        }
+        
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #2e7d64 0%, #1a5d4a 100%);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+        
+        .login-btn:hover {
+            transform: scale(1.02);
+        }
+        
+        .error-message {
+            background: #ffebee;
+            color: #f44336;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .dark-mode .login-card {
+            background: #1f2a4e;
+        }
+        
+        .dark-mode .login-card h1 {
+            color: white;
+        }
+        
+        .dark-mode .input-group input {
+            background: #16213e;
+            color: white;
+            border-color: #2a3a6e;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-icon">
+                <i class="fas fa-mosque"></i>
+            </div>
+            <h1>Selamat Datang</h1>
+            <p>Silakan masukkan nama Anda untuk memulai</p>
+            
+            <div class="input-group">
+                <label><i class="fas fa-user"></i> Nama Pengguna</label>
+                <input type="text" id="usernameInput" placeholder="Contoh: Ahmad" maxlength="30">
+            </div>
+            
+            <button class="login-btn" id="loginBtn">
+                <i class="fas fa-arrow-right"></i> Mulai Beribadah
+            </button>
+            
+            <div class="error-message" id="errorMsg">
+                <i class="fas fa-exclamation-circle"></i> Nama tidak boleh kosong!
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const loginBtn = document.getElementById('loginBtn');
+        const usernameInput = document.getElementById('usernameInput');
+        const errorMsg = document.getElementById('errorMsg');
+        
+        // Cek apakah sudah login sebelumnya
+        const savedUsername = localStorage.getItem('userName');
+        if (savedUsername) {
+            // Jika sudah login, langsung ke beranda
+            window.location.href = 'index.html';
+        }
+        
+        loginBtn.addEventListener('click', () => {
+            const username = usernameInput.value.trim();
+            
+            if (username === '') {
+                errorMsg.style.display = 'block';
+                setTimeout(() => {
+                    errorMsg.style.display = 'none';
+                }, 2000);
+                return;
+            }
+            
+            // Simpan username ke localStorage
+            localStorage.setItem('userName', username);
+            
+            // Redirect ke beranda
+            window.location.href = 'index.html';
+        });
+        
+        // Enter key to submit
+        usernameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                loginBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>
